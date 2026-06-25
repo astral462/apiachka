@@ -33,3 +33,8 @@ def get_random_wishes(key: str = Header()):
             message=random.choice(wishes).strip("()""[]"),
             status="200"
         )
+
+
+@app.get("/")
+def index():
+    return "ПРивіт"
