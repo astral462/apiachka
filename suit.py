@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Header
 from pydantic import BaseModel
 import random
+import requests
 
 app = FastAPI(
     title="Назва",
@@ -34,7 +35,12 @@ def get_random_wishes(key: str = Header()):
             status="200"
         )
 
-
 @app.get("/")
 def index():
     return "ПРивіт"
+
+response = requests.get('http://173.212.211.53/eduard/')
+    if response.status_code == 200:
+        print(response.text)
+    else:
+        raise HTTPException()
